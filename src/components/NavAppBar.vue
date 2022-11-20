@@ -10,7 +10,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn href="https://github.com/jKai-Hw/Online-Dating-App#readme" target="_blank" text>
+            <v-btn href="https://github.com/jKai-Hw/chat-app#readme" target="_blank" text>
                 <span class="mr-2 text-capitalize">GitHub README</span>
                 <v-icon>mdi-open-in-new</v-icon>
             </v-btn>
@@ -37,7 +37,7 @@ export default {
     name: 'NavAppBar',
     data() {
         return {
-            drawer: false,
+            drawer: null,
             links: [
                 { icon: 'mdi-home', text: 'Home', route: '/' },
                 { icon: 'mdi-forum', text: 'Talk', route: '/message-list' },
