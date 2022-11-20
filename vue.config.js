@@ -11,7 +11,7 @@ module.exports = {
   ],
   outputDir : 'docs',
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/Online-Dating-App/'
+    ? '/chat-app/'
     : '/',
   assetsDir: './',
 }
