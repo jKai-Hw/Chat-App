@@ -24,6 +24,8 @@ https://jkai-hw.github.io/Online-Dating-App/
 
 前のページに戻るボタンや、個人詳細ページへへ移動できるボタンを複数設置したり、LINEのような見た目のトーク画面などユーザー体験がよくなるようにも気を付けました。
 
+
+
 ## Project setup
 ```
 npm install
