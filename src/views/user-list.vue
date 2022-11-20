@@ -2,11 +2,11 @@
     <div class="userList">
         <h1 class="subheading grey--text">Home</h1>
 
-        <v-container class="my-5">
+        <div class="my-5">
             <v-row wrap>
                 <userCard v-for="user in getUsers" :key=user.login.uuid :user="user"></userCard>
             </v-row>
-        </v-container>
+        </div>
     </div>
 </template>
 
