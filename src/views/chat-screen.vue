@@ -1,33 +1,16 @@
 <template>
-    <div class="pa-0 ma-0 overflow-y-auto" ref="scroll">
+    <div class="pa-0 ma-0 overflow-y-auto height100 hull-width" ref="scroll">
 
-        <v-app-bar dense flat color="grey lighten-2">
-            <v-icon @click="$router.back()" class="rotate-180 pl-5">mdi-logout</v-icon>
+        <v-app-bar app dense flat color="app-bar grey lighten-2">
+            <v-icon @click="$router.back()" class="d-sm-none rotate-180 pl-5">mdi-logout</v-icon>
             <v-toolbar-title class="pl-1">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
 
             <v-spacer></v-spacer>
         </v-app-bar>
-        <div class="chat-screen__name-bar pa-0 ma-0" >
+        <div class="chat-screen__name-bar pb-10" >
 
             <v-row class="pt-5 pa-2 ma-0">
                 <v-col xs="12" class="pa-2">
-                    <!--  v-card xs="12" class="pa-2 overflow-y-auto mx-auto" width="100%" max-height="400" ref="scroll"  -->
-
-
-                    <!-- <v-list
-        class="overflow-y-auto mx-auto my-10"
-        width="100%"
-        max-height="200"
-        max-width="500">
-
-        <v-list-item
-            v-for="item in items"
-            :key="item.message">
-            {{ item.message }}
-        </v-list-item>
-    </v-list> -->
-
-
 
                     <messageBox v-for="messages in getMsgList" :key="messages.order" :messages="messages"></messageBox>
 
@@ -35,7 +18,7 @@
             </v-row>
         </div>
 
-        <v-footer app outlined class="mx-0" color="grey lighten-2">
+        <v-footer outlined class="mx-0" color="footer grey lighten-2">
             <v-row no-gutters class="d-flex align-content-center justify-center">
                 <v-col class="pr-2">
                     <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..."
@@ -57,7 +40,7 @@ import messageBox from "@/components/messageBox.vue";
 import { Message } from '@/model/index.js'
 
 export default {
-    name: 'chatScreen',
+    name: "chatScreen",
     data() {
         return {
             order: 0,
@@ -85,7 +68,7 @@ export default {
     updated() {
         this.$nextTick(function () {
             let chatLog = this.$refs.scroll;
-            if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight;
+            chatLog.scrollTop = chatLog.scrollHeight;
         })
     },
     methods: {
@@ -136,6 +119,12 @@ export default {
 </script>
 
 <style>
+/* .app-bar {
+    margin-left: 30vw;
+    width: 70vw;
+    position: fixed;
+    top: 32px !important;
+} */
 .chat-screen__name-bar {
     width: 100% !important;
 }
@@ -144,7 +133,7 @@ export default {
 }
 
 .card-mine {
-    border-radius: 8px 8px 0 8px !important;
+    border-radius: 8px 0 8px 8px !important;
 }
 
 .card-opponent {
@@ -178,5 +167,31 @@ export default {
 
 .h-100 {
     height: 100% !important;
+}
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+@media only screen and (max-width: 37.5remスマホの時) {
+    /* .app-bar {
+        position: fixed !important;
+        top: 32px !important;
+    } */
+    .chat-screen__name-bar {
+        position: relative !important;
+        top: -80px !important;
+    }
+}
+@media only screen and (min-width: 37.5rem) {
+    .hull-width {
+        position: fixed;
+        right: 0;
+        width: 70vw;
+    }
+    .footer {
+        width: 70vw;
+        left: 30vw !important;
+    }
 }
 </style>

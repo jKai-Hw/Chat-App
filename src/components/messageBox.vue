@@ -1,20 +1,183 @@
 <template>
     <div>
-        <v-row wrap v-if="messages.didISent == false" class="ma-0">
+        <v-row wrap v-if="messages.didISent == false" class="ma-0 d-flex">
+            <div>
 
-            <router-link :to="{ name: 'userDetails', params: { id: getUser.login.uuid } }" class="text-decoration-none">
-                <v-avatar class="me-1">
-                    <img :src="getUser.picture.thumbnail">
-                </v-avatar>
-            </router-link>
+                <v-dialog dark max-width="70%" transition="dialog-bottom-transition" v-model="dialog" class="height70">
+                    <template v-slot:activator="{ on, attrs }">
+                        <v-avatar class="me-1"  v-bind="attrs" v-on="on">
+                            <img :src="getUser.picture.large">
+                        </v-avatar>
+                    </template>
+
+                    <v-card :img="bgList[getUser.index]" v-bind:class="profileDisplay">
+                        <!-- <v-card :img="require('../assets/background-img/background-img3.jpeg')" v-bind:class="profileDisplay"> -->
+
+                        <!-- <img :src="require('../assets/background-img/background-img3.jpeg')"> -->
+                        <!-- <v-card v-bind:class="(profileDisplay, bgimg)"> -->
+                        <!-- <v-card img="getUser.background-img" class="" v-bind:class="profileDisplay"> -->
+                        <div class="height70 d-flex align-center justify-center flex-column">
+                            <div class="close-btn">
+                                <v-btn icon @click="dialog = false">
+                                    <v-icon>mdi-close</v-icon>
+                                </v-btn>
+                            </div>
+                            <div class="userDetail-btn">
+                                <v-btn icon @click="value = 'Detail'">
+                                    <v-icon>mdi-account</v-icon>
+                                </v-btn>
+                            </div>
+                            <!-- <div class="getUserDetail-btn">
+                                        <v-btn text class="btn-multiline text-center" width="50" height="60">
+                                            <span class="text-wrap"><v-icon>mdi-account</v-icon>Detail</span>
+                                        </v-btn>
+                                    </div> -->
+                            <div class="width100">
+                                <div class="d-flex justify-center">
+                                    <v-avatar size="100"><img :src="getUser.picture.large" alt=""></v-avatar>
+                                </div>
+                                <v-card-title class="d-flex justify-center">
+                                    {{(getUser.name.first + " " + getUser.name.last)}}
+                                </v-card-title>
+                                <v-card-subtitle class="d-flex justify-center">
+                                    <v-icon>mdi-map-marker</v-icon>{{( getUser.location.country) }}
+                                </v-card-subtitle>
+                                <v-card-actions class="d-flex justify-center">
+                                    <v-btn text class="btn-multiline text-center" width="50" height="60"
+                                        :to="{ name: 'chatScreen', params: { id: getUser.login.uuid }}" @click="dialog = false">
+                                        <span class="text-wrap"><v-icon>mdi-chat-processing</v-icon>Talk</span>
+                                    </v-btn>
+                                    <v-btn text class="btn-multiline text-center" width="50" height="60" @click="phoneDialog = true">
+                                        <span class="text-wrap"><v-icon>mdi-phone</v-icon>Phone</span>
+                                    </v-btn>
+                                    <v-btn text class="btn-multiline text-center" width="50" height="60">
+                                        <span class="text-wrap"><v-icon>mdi-video</v-icon>Video call</span>
+                                    </v-btn>
+                                </v-card-actions>
+                            </div>
+                        </div>
+                    </v-card>
+                    <v-card color="blue-grey darken-1" class="" v-bind:class="detailDisplay">
+                        <div class="width100 height70">
+                            <div class="close-btn">
+                                <v-btn icon @click="value = 'Profile'">
+                                    <v-icon>mdi-arrow-left</v-icon>
+                                </v-btn>
+                            </div>
+                            <div class=" d-flex flex-column justify-center">
+                                <div class="d-flex flex-column flex-sm-row justify-center align-center pt-6">
+                                    <div class="d-flex justify-center  order-sm-1">
+                                        <v-avatar size="150"><img :src="getUser.picture.large" alt=""></v-avatar>
+                                    </div>
+                                    <div class="pe-sm-7 order-sm-0">
+                                        <v-card-title class="d-flex justify-center">
+                                            {{(getUser.name.first + " " + getUser.name.last)}}
+                                        </v-card-title>
+                                        <v-card-subtitle class="d-flex justify-center pb-2">
+                                            <v-icon>mdi-map-marker</v-icon>{{( getUser.location.country) }}
+                                        </v-card-subtitle>
+                                        <v-card-actions class="d-flex justify-center pa-0">
+                                            <v-btn text class="btn-multiline text-center" width="50" height="40"
+                                                :to="{ name: 'chatScreen', params: { id: getUser.login.uuid }}" @click="dialog = false">
+                                                <span class="text-wrap"><v-icon>mdi-chat-processing</v-icon></span>
+                                            </v-btn>
+                                            <v-btn text class="btn-multiline text-center" width="50" height="40"
+                                                @click="phoneDialog = true">
+                                                <span class="text-wrap"><v-icon>mdi-phone</v-icon></span>
+                                            </v-btn>
+                                            <v-btn text class="btn-multiline text-center" width="50" height="40">
+                                                <span class="text-wrap"><v-icon>mdi-video</v-icon></span>
+                                            </v-btn>
+                                        </v-card-actions>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-center">
+                                    <v-simple-table class="table">
+                                        <template v-slot:default>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>gender</td>
+                                                    <td class="text-right">{{ getUser.gender }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>age</td>
+                                                    <td class="text-right">{{ getUser.dob.age }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>country</td>
+                                                    <td class="text-right">{{ getUser.location.country }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>state</td>
+                                                    <td class="text-right">{{ getUser.location.state }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>city</td>
+                                                    <td class="text-right">{{ getUser.location.city }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                            <tbody>
+                                                <tr>
+                                                    <td>email</td>
+                                                    <td class="text-right">{{ getUser.email }}</td>
+                                                </tr>
+                                            </tbody>
+
+                                        </template>
+                                    </v-simple-table>
+                                </div>
+                            </div>
+                        </div>
+                    </v-card>
+                </v-dialog>
+                <v-dialog v-model="phoneDialog" max-width="500px">
+                    <v-card>
+                        <v-card-title>
+                            Call
+                        </v-card-title>
+                        <h4 class="px-6 pt-3"><v-icon class="pe-6">mdi-phone</v-icon><span
+                                class="text-decoration-underline grey--text text--darken-3">{{ getUser.cell }}</span></h4>
+                        <h4 class="pt-10 px-6">
+                            <v-icon>mdi-alert</v-icon>
+                            This is not a real telephone number. Please note that we cannot be held responsible for any problems that
+                            may arise from
+                            calling this number.
+                        </h4>
+                        <v-card-actions>
+                            <v-btn color="primary" text @click="phoneDialog = false">
+                                Close
+                            </v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-dialog>
+                <!-- <router-link :to="{ name: 'userDetails', params: { id: getUser.login.uuid } }" class="text-decoration-none">
+                    <v-avatar class="me-1">
+                        <img :src="getUser.picture.thumbnail">
+                    </v-avatar>
+                </router-link> -->
+            </div>
 
             <div>
-                <v-card class="mb-1 card-opponent">
+                <v-card class="mb-1 ms-1 card-opponent">
                     <v-card-text class="pa-2">
                         <p class="font-message">{{ messages.text }}</p>
                     </v-card-text>
                 </v-card>
-                <v-row class="ma-0">
+                <v-row class="ms-1 ma-0">
                     <p class="font-date ma-0 pl-1">{{ messages.date }}</p>
                 </v-row>
             </div>
@@ -37,8 +200,27 @@
 
 
 <script>
+import bg1 from '../assets/background-img/background-img1.jpeg'
+import bg2 from '../assets/background-img/background-img2.jpeg'
+import bg3 from '../assets/background-img/background-img3.jpeg'
+import bg4 from '../assets/background-img/background-img4.jpeg'
+import bg5 from '../assets/background-img/background-img5.jpeg'
+import bg6 from '../assets/background-img/background-img6.jpeg'
+import bg7 from '../assets/background-img/background-img7.jpeg'
+import bg8 from '../assets/background-img/background-img8.jpeg'
+import bg9 from '../assets/background-img/background-img9.jpeg'
+import bg10 from '../assets/background-img/background-img10.jpeg'
+
 export default {
     name: 'messageBox',
+    data() {
+        return {
+            dialog: false,
+            phoneDialog: false,
+            value: 'Profile',
+            bgList: [bg1, bg2, bg3, bg4, bg5, bg6, bg7, bg8, bg9, bg10],
+        }
+    },
     props: {
         messages: Object,
         user: Object
@@ -46,6 +228,15 @@ export default {
     computed: {
         getUser() {
             return this.$store.getters.getUserById(this.$route.params.id);
+        },
+        profileDisplay() {
+            if (this.value == 'Detail') return "d-none";
+            else return "";
+        },
+        detailDisplay() {
+            // console.log(this.user.backgroundimg);
+            if (this.value == 'Profile') return "d-none";
+            else return "";
         }
     },
 }

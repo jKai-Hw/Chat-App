@@ -6,18 +6,19 @@
                 <router-link :to="{ name: 'userDetails', params: { id: getUser.login.uuid } }"
                     class="text-decoration-none">
                     <v-avatar class="me-2">
-                        <img :src="getUser.picture.thumbnail">
+                        <img :src="getUser.picture.large">
                     </v-avatar>
                 </router-link>
 
-                <div class="">
+                <div class="hull-width">
                     <div class="d-flex align-center  text-center pb-1">
                         <h4 class="font-name pe-5">{{ getUser.name.first }}</h4>
+                        <v-spacer></v-spacer>
                         <p class="font-date">{{ getLastMsg.date }}</p>
                     </div>
-                    <v-row class="ma-0">
+                    <div class="ma-0">
                         <p class="font-text ma-0">{{ getLastMsg.text }}</p>
-                    </v-row>
+                    </div>
                 </div>
             </div>
         </router-link>
@@ -73,5 +74,8 @@ export default {
 
 .margin-12 {
     margin: 12px 0;
+}
+.hull-width {
+    width: 100%;
 }
 </style>

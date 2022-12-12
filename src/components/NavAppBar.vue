@@ -16,8 +16,10 @@
             </v-btn>
         </v-app-bar>
 
-        <v-navigation-drawer app v-model="drawer">
-            <v-list>
+        <v-navigation-drawer app width="350" v-model="drawer" class="drawer">
+            <UserList1 />
+
+            <!-- <v-list>
                 <v-list-item-group>
                     <v-list-item color="red" v-for="link in links" :key="link.text" touter :to="link.route">
                         <v-list-item-icon>
@@ -26,13 +28,15 @@
                         <v-list-item-title class="red--text">{{ link.text }}</v-list-item-title>
                     </v-list-item>
                 </v-list-item-group>
-            </v-list>
+            </v-list> -->
         </v-navigation-drawer>
     </v-card>
 
 </template>
 
 <script>
+import UserList1 from '@/components/UserList1.vue'
+
 export default {
     name: 'NavAppBar',
     data() {
@@ -44,11 +48,18 @@ export default {
             ]
         }
     },
+    components: {
+        UserList1,
+    }
 }
 </script>
 
 <style lang="scss">
 .no-background-hover::before {
     background-color: transparent !important;
+}
+.drawer {
+    max-height: calc(100% - 0px) !important;
+    transform: translateX(0%) !important;
 }
 </style>

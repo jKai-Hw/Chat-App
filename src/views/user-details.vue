@@ -21,7 +21,7 @@
                     <tbody>
                         <tr>
                             <td>gender</td>
-                            <td>{{ getUser.gender }}</td>
+                            <td class="text-center">{{ getUser.gender }}</td>
                         </tr>
                     </tbody>
 
