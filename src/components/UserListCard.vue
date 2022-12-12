@@ -57,7 +57,7 @@
                     </div>
                 </div>
             </v-card>
-            <v-card color="blue-grey darken-1" class="card-detail" v-bind:class="detailDisplay">
+            <v-card color="#3A5475" class="card-detail" v-bind:class="detailDisplay">
                 <div class="width100 height70">
                     <div class="close-btn">
                         <v-btn icon @click="value = 'Profile'">
