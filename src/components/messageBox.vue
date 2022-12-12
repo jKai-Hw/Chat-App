@@ -57,14 +57,14 @@
                             </div>
                         </div>
                     </v-card>
-                    <v-card color="blue-grey darken-1" class="" v-bind:class="detailDisplay">
+                    <v-card color="blue-grey darken-1" class="card" v-bind:class="detailDisplay">
                         <div class="width100 height70">
                             <div class="close-btn">
                                 <v-btn icon @click="value = 'Profile'">
                                     <v-icon>mdi-arrow-left</v-icon>
                                 </v-btn>
                             </div>
-                            <div class=" d-flex flex-column justify-center">
+                            <div class=" d-flex flex-column justify-center justify-space-around height100p">
                                 <div class="d-flex flex-column flex-sm-row justify-center align-center pt-6">
                                     <div class="d-flex justify-center  order-sm-1">
                                         <v-avatar size="150"><img :src="getUser.picture.large" alt=""></v-avatar>
@@ -91,55 +91,38 @@
                                         </v-card-actions>
                                     </div>
                                 </div>
-                                <div class="d-flex justify-center">
-                                    <v-simple-table class="table">
-                                        <template v-slot:default>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>gender</td>
-                                                    <td class="text-right">{{ getUser.gender }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>age</td>
-                                                    <td class="text-right">{{ getUser.dob.age }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>country</td>
-                                                    <td class="text-right">{{ getUser.location.country }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>state</td>
-                                                    <td class="text-right">{{ getUser.location.state }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>city</td>
-                                                    <td class="text-right">{{ getUser.location.city }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                            <tbody>
-                                                <tr>
-                                                    <td>email</td>
-                                                    <td class="text-right">{{ getUser.email }}</td>
-                                                </tr>
-                                            </tbody>
-
-                                        </template>
-                                    </v-simple-table>
-                                </div>
+                                <v-card-text class="userData-con">
+                                    <div class="d-flex userData">
+                                        <p>gender</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.gender }}</p>
+                                    </div>
+                                    <div class="d-flex userData">
+                                        <p>age</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.dob.age }}</p>
+                                    </div>
+                                    <div class="d-flex userData">
+                                        <p>country</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.location.country }}</p>
+                                    </div>
+                                    <div class="d-flex userData">
+                                        <p>state</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.location.state }}</p>
+                                    </div>
+                                    <div class="d-flex userData">
+                                        <p>city</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.location.city }}</p>
+                                    </div>
+                                    <div class="d-flex userData">
+                                        <p>email</p>
+                                        <v-spacer></v-spacer>
+                                        <p>{{ getUser.email }}</p>
+                                    </div>
+                                </v-card-text>
                             </div>
                         </div>
                     </v-card>
@@ -174,7 +157,7 @@
             <div>
                 <v-card class="mb-1 ms-1 card-opponent">
                     <v-card-text class="pa-2">
-                        <p class="font-message">{{ messages.text }}</p>
+                        <p class="font-message f-NSJ ">{{ messages.text }}</p>
                     </v-card-text>
                 </v-card>
                 <v-row class="ms-1 ma-0">
@@ -185,9 +168,9 @@
 
         <v-row wrap class="justify-end ma-0" v-else>
             <div class="">
-                <v-card class="mb-1 " color="red lighten-4 card-mine">
-                    <v-card-text class="pa-2 ">
-                        <p class="font-message">{{ messages.text }}</p>
+                <v-card class="mb-1 card-mine" color="#3A5475">
+                    <v-card-text class="pa-2">
+                        <p class="font-message white--text f-NSJ fw-300">{{ messages.text }}</p>
                     </v-card-text>
                 </v-card>
                 <v-row class="justify-end ma-0">
@@ -249,14 +232,44 @@ export default {
     font-size: 1rem;
     margin: 0% !important;
 }
-
+.height100p {
+    height: 100%;
+}
+.fw-300 {
+    font-weight: 300;
+}
+.overflow-hidden {
+    overflow: hidden !important;
+}
 .font-date {
     color: rgba(0, 0, 0, 0.6);
     font-size: 0.875rem;
     margin: 0% !important;
 }
+.card {
+    display: flex !important;
+    flex-direction: column;
+}
+.userData-con {
+    overflow: auto;
+}
 
+.userData {
+    width: 100%;
+}
 .margin-12 {
     margin: 12px 0;
+}
+@media only screen and (max-width: 37.5rem) {
+    .userData-con {
+        flex-grow: 1;
+    }
+}
+
+@media only screen and (min-width: 37.5rem) {
+    .userData {
+        width: 65%;
+        margin: 0 auto;
+    }
 }
 </style>

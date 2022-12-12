@@ -57,14 +57,14 @@
                     </div>
                 </div>
             </v-card>
-            <v-card color="blue-grey darken-1" class="" v-bind:class="detailDisplay">
+            <v-card color="blue-grey darken-1" class="card-detail" v-bind:class="detailDisplay">
                 <div class="width100 height70">
                     <div class="close-btn">
                         <v-btn icon @click="value = 'Profile'">
                             <v-icon>mdi-arrow-left</v-icon>
                         </v-btn>
                     </div>
-                    <div class=" d-flex flex-column justify-center">
+                    <div class=" d-flex flex-column justify-center justify-space-around height100p">
                         <div class="d-flex flex-column flex-sm-row justify-center align-center pt-6">
                             <div class="d-flex justify-center  order-sm-1">
                                 <v-avatar  size="150"><img :src="user.picture.large" alt=""></v-avatar>
@@ -90,55 +90,38 @@
                                 </v-card-actions>
                             </div>
                         </div>
-                        <div class="d-flex justify-center">
-                            <v-simple-table class="table">
-                                <template v-slot:default>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>gender</td>
-                                            <td class="text-right">{{ user.gender }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>age</td>
-                                            <td class="text-right">{{ user.dob.age }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>country</td>
-                                            <td class="text-right">{{ user.location.country }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>state</td>
-                                            <td class="text-right">{{ user.location.state }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>city</td>
-                                            <td class="text-right">{{ user.location.city }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <tbody>
-                                        <tr>
-                                            <td>email</td>
-                                            <td class="text-right">{{ user.email }}</td>
-                                        </tr>
-                                    </tbody>
-
-                                </template>
-                            </v-simple-table>
-                        </div>
+                        <v-card-text class="userData-con">
+                            <div class="d-flex userData">
+                                <p>gender</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.gender }}</p>
+                            </div>
+                            <div class="d-flex userData">
+                                <p>age</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.dob.age }}</p>
+                            </div>
+                            <div class="d-flex userData">
+                                <p>country</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.location.country }}</p>
+                            </div>
+                            <div class="d-flex userData">
+                                <p>state</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.location.state }}</p>
+                            </div>
+                            <div class="d-flex userData">
+                                <p>city</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.location.city }}</p>
+                            </div>
+                            <div class="d-flex userData">
+                                <p>email</p>
+                                <v-spacer></v-spacer>
+                                <p>{{ user.email }}</p>
+                            </div>
+                        </v-card-text>
                     </div>
                 </div>
             </v-card>
@@ -207,6 +190,9 @@ export default {
 </script>
 
 <style>
+.height100p {
+    height: 100%;
+}
 .height70 {
     height: 70vh;
 }
@@ -222,6 +208,17 @@ export default {
 .table {
     background-color: transparent !important;
 }
+.card-detail {
+    /* background: linear-gradient(to bottom right, #EB8261, #EFBF1C); */
+        display: flex !important;
+    flex-direction: column;
+}
+.userData-con {
+    overflow: auto;
+}
+.userData {
+    width: 100%;
+}
 .close-btn {
     position: absolute;
     top: 1vh;
@@ -236,45 +233,15 @@ export default {
     width: 100%
 }
 
-
-
-/* .bgimg1 {
-    background: url("../assets/background-img/background-img1.jfif");
+@media only screen and (max-width: 37.5rem) {
+    .userData-con {
+        flex-grow: 1;
+    }
 }
-
-.bgimg2 {
-    background: url("../assets/background-img/background-img2.jfif");
+@media only screen and (min-width: 37.5rem) {
+    .userData {
+        width: 65%;
+        margin: 0 auto;
+    }
 }
-
-.bgimg3 {
-    background: url("../assets/background-img/background-img3.jfif");
-}
-
-.bgimg4 {
-    background: url("../assets/background-img/background-img4.jfif");
-}
-
-.bgimg5 {
-    background: url("../assets/background-img/background-img5.jfif");
-}
-
-.bgimg6 {
-    background: url("../assets/background-img/background-img6.jfif");
-}
-
-.bgimg7 {
-    background: url("../assets/background-img/background-img7.jfif");
-}
-
-.bgimg8 {
-    background: url("../assets/background-img/background-img8.jfif");
-}
-
-.bgimg9 {
-    background: url("../assets/background-img/background-img9.jfif");
-}
-
-.bgimg10 {
-    background: url("../assets/background-img/background-img10.jfif");
-} */
 </style>

@@ -1,13 +1,4 @@
 <template>
-    <!-- <div class="userList">
-        <h1 class="subheading grey--text">Home</h1>
-
-        <div class="my-5">
-            <v-row wrap>
-                <userCard v-for="user in getUsers" :key=user.login.uuid :user="user"></userCard>
-            </v-row>
-        </div>
-    </div> -->
     <div>
         <div id="xs-index" class="d-flex d-sm-none">
             <UserList1 />

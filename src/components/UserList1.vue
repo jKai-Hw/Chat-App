@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <v-system-bar fixed light class="top-nav">
+        <v-system-bar fixed light class="top-nav" color="#EAE0C7">
             <span class="ps-2">{{ this.value }}</span>
             <!-- <v-spacer></v-spacer>
             <span>2022/22/22 33:66:66</span>
@@ -14,26 +14,26 @@
             <TalkList  />
         </div>
 
-        <v-bottom-navigation app fixed grow v-model="value" class="d-none d-sm-flex">
-            <v-btn value="Home">
+        <v-bottom-navigation app fixed grow shift v-model="value" height="52px" class="d-none d-sm-flex" background-color="#EAE0C7">
+            <v-btn value="Home" color="#EAE0C7">
                 <span>Home</span>
-                <v-icon>mdi-home</v-icon>
+                <v-icon>mdi-home-outline</v-icon>
             </v-btn>
 
-            <v-btn value="Talk">
+            <v-btn value="Talk" color="#EAE0C7">
                 <span>talk</span>
-                <v-icon>mdi-chat-processing</v-icon>
+                <v-icon>mdi-chat-processing-outline</v-icon>
             </v-btn>
         </v-bottom-navigation>
-        <v-bottom-navigation app fixed grow v-model="value" class="d-flex d-sm-none">
-            <v-btn value="Home" disabled>
+        <v-bottom-navigation app fixed grow shift v-model="value" class="d-flex d-sm-none" background-color="#EAE0C7">
+            <v-btn value="Home" color="#EAE0C7">
                 <span>Home</span>
-                <v-icon>mdi-home</v-icon>
+                <v-icon>mdi-home-outline</v-icon>
             </v-btn>
 
-            <v-btn value="Talk" to="/message-list">
+            <v-btn value="Talk" color="#EAE0C7" to="/message-list">
                 <span>talk</span>
-                <v-icon>mdi-chat-processing</v-icon>
+                <v-icon>mdi-chat-processing-outline</v-icon>
             </v-btn>
         </v-bottom-navigation>
 

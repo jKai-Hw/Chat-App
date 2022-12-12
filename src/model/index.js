@@ -18,9 +18,10 @@ class Message{
         let date = dayTime.getDate();
         let hours = dayTime.getHours();
         let minutes = dayTime.getMinutes();
-        let seconds = dayTime.getSeconds();
+        // let seconds = dayTime.getSeconds();
 
-        let dateString = `${year}/${month}/${date}/ ${hours}:${minutes}:${seconds}`;
+        let dateString = `${year}/${month}/${date}/ ${hours}:${minutes}`;
+        // :${seconds}
 
         return dateString;
     }

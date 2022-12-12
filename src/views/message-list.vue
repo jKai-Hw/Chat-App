@@ -1,6 +1,6 @@
 <template>
     <div class="">
-        <v-system-bar fixed light class="top-nav">
+        <v-system-bar fixed light class="top-nav" color="#EAE0C7">
             <span class="ps-2">Talk</span>
         </v-system-bar>
 
@@ -8,15 +8,15 @@
             <TalkList />
         </div>
 
-        <v-bottom-navigation app fixed grow>
+        <v-bottom-navigation app fixed grow shift background-color="#EAE0C7" v-model="value">
             <v-btn to="/">
                 <span>Home</span>
-                <v-icon>mdi-home</v-icon>
+                <v-icon>mdi-home-outline</v-icon>
             </v-btn>
 
-            <v-btn disabled>
+            <v-btn value="Talk" color="#EAE0C7">
                 <span>talk</span>
-                <v-icon>mdi-chat-processing</v-icon>
+                <v-icon>mdi-chat-processing-outline</v-icon>
             </v-btn>
         </v-bottom-navigation>
 
@@ -30,6 +30,9 @@ import TalkList from "@/components/talkList.vue";
 
 export default {
     name: 'messageList',
+    data: () => ({
+        value: 'Talk',
+    }),
     computed: {
         getLastMsgId() {
             // return this.$store.getters.getLatestMessageById;

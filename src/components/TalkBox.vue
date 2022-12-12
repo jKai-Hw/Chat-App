@@ -5,46 +5,15 @@
         <v-divider v-else-if="item.divider" :key="index" :inset="item.inset"></v-divider> -->
 
         <v-list-item class="px-2 py-2 min-height-">
-            <v-dialog dark max-width="70%" transition="dialog-bottom-transition" v-model="dialog" class="height70">
-                <template v-slot:activator="{ on, attrs }">
                         <v-avatar class="me-2" v-bind="attrs" v-on="on">
                             <img :src="getUser.picture.large">
                         </v-avatar>
-                </template>
-
-                <v-card img="https://source.unsplash.com/random">
-                    <div class="height70 d-flex align-center justify-center flex-column">
-                        <div class="close-btn">
-                            <v-btn icon @click="dialog = false">
-                                <v-icon>mdi-close</v-icon>
-                            </v-btn>
-                        </div>
-                        <div class="width100">
-                            <div class="d-flex justify-center">
-                                <v-avatar size="100"><img :src="getUser.picture.large" alt=""></v-avatar>
-                            </div>
-                            <v-card-title class="d-flex justify-center">
-                                {{(getUser.name.first + " " + getUser.name.last)}}
-                            </v-card-title>
-                            <v-card-subtitle class="d-flex justify-center">
-                                {{( "country: " + getUser.location.country) }}
-                            </v-card-subtitle>
-                            <v-card-actions class="d-flex justify-center">
-                                <v-btn text class="btn-multiline text-center" width="50" height="60"
-                                    :to="{ name: 'chatScreen', params: { id: getUser.login.uuid }}" @click="dialog = false">
-                                    <span class="text-wrap"><v-icon>mdi-chat-processing</v-icon>Talk</span>
-                                </v-btn>
-                            </v-card-actions>
-                        </div>
-                    </div>
-                </v-card>
-            </v-dialog>
 
 
 
-            <div class="hull-width">
-                <div class="d-flex align-center  text-center pb-1">
-                    <h4 class="font-name pe-5">{{ getUser.name.first }}</h4>
+            <div class="width100">
+                <div class="d-flex align-center  text-center pb-1 width100">
+                    <h4 class="font-name pe-5">{{ getUser.name.last }}</h4>
                     <v-spacer></v-spacer>
                     <p class="font-date">{{ getLastMsg.date }}</p>
                 </div>
@@ -125,7 +94,13 @@ export default {
 </script>
 
 <style>
+.width100 {
+    width: 100%;
+}
 .min-height- {
     min-height: 40px !important;
+}
+.font-name {
+    max-width: 10px !important;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="pa-0 ma-0 overflow-y-auto height100 hull-width" ref="scroll">
 
-        <v-app-bar app dense flat color="app-bar grey lighten-2">
+        <v-app-bar app dense flat color="#EAE0C7">
             <v-icon @click="$router.back()" class="d-sm-none rotate-180 pl-5">mdi-logout</v-icon>
             <v-toolbar-title class="pl-1">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
 
@@ -18,12 +18,12 @@
             </v-row>
         </div>
 
-        <v-footer outlined class="mx-0" color="footer grey lighten-2">
+        <v-footer outlined class="mx-0 footer" color="#EAE0C7">
             <v-row no-gutters class="d-flex align-content-center justify-center">
                 <v-col class="pr-2">
                     <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..."
                         v-model="text" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter"
-                        @keydown.enter.shift="keyEnterShift">
+                        @keydown.enter.shift="keyEnterShift" color="#093353">
                     </v-textarea>
                 </v-col>
                 <v-btn depressed color="gray lighten-4" class="px-0 d-flex  align-content-center" min-width="0"

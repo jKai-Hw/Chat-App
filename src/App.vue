@@ -1,5 +1,5 @@
 <template>
-  <v-app class="d-flex">
+  <v-app id="v-app" class="d-flex">
     <SystemBar />
     <!-- <v-navigation-drawer permanent app width="30vw" v-model="drawer" class="drawer"> -->
     <v-navigation-drawer permanent app width="30vw" height="100%" class="nav-drawer d-none d-sm-flex">
@@ -41,6 +41,13 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap');
+#v-app {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.f-NSJ {
+  font-family: 'Noto Sans JP', sans-serif;
+}
 .nav-drawer {
   max-height: calc(100% - 34px) !important;
 }
