@@ -12,7 +12,7 @@ Vue.jsの学習のアウトプットとして作成しました。
   - [Talk API](https://a3rt.recruit.co.jp/product/talkAPI/)
 
 ## URL
-https://jkai-hw.github.io/chat-app/
+https://jkai-hw.github.io/chats-app/
 
 ## Description
 初めて、外部APIとの非同期通信、モジュールやルーティング、状態管理のライブラリを使用して作成したアプリケーションです。
