@@ -1,34 +1,27 @@
 <template>
     <div class="pa-0 ma-0 overflow-y-auto height100 hull-width" ref="scroll">
-
         <v-app-bar app dense flat color="#EAE0C7">
             <v-icon @click="$router.back()" class="d-sm-none rotate-180 pl-5">mdi-logout</v-icon>
-            <v-toolbar-title class="pl-1">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
-
+            <v-toolbar-title class="pl-1 f-black">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-app-bar>
-        <div class="chat-screen__name-bar pb-10" >
 
+        <div class="chat-screen__name-bar pb-10" >
             <v-row class="pt-5 pa-2 ma-0">
                 <v-col xs="12" class="pa-2">
-
-                    <messageBox v-for="messages in getMsgList" :key="messages.order" :messages="messages"></messageBox>
-
+                    <MessageBox v-for="messages in getMsgList" :key="messages.order" :messages="messages"></MessageBox>
                 </v-col>
             </v-row>
         </div>
 
         <v-footer outlined class="mx-0 footer" color="#EAE0C7">
-            <v-row no-gutters class="d-flex align-content-center justify-center">
+            <v-row no-gutters class="d-flex align-center justify-center">
                 <v-col class="pr-2">
-                    <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..."
-                        v-model="text" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter"
-                        @keydown.enter.shift="keyEnterShift" color="#093353">
+                    <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..." v-model="text" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter" @keydown.enter.shift="keyEnterShift" color="#093353">
                     </v-textarea>
                 </v-col>
-                <v-btn depressed color="gray lighten-4" class="px-0 d-flex  align-content-center" min-width="0"
-                    @click="sendMessage()">
-                    <v-icon large class="color-gray">mdi-send-circle-outline</v-icon>
+                <v-btn icon  color="gray lighten-4" class="px-0 d-flex  align-center" min-width="0" @click="sendMessage()">
+                    <v-icon large>mdi-send-circle-outline</v-icon>
                 </v-btn>
             </v-row>
         </v-footer>
@@ -36,7 +29,7 @@
 </template>
 
 <script>
-import messageBox from "@/components/messageBox.vue";
+import MessageBox from "@/components/MessageBox.vue";
 import { Message } from '@/model/index.js'
 
 export default {
@@ -59,17 +52,6 @@ export default {
         getUser() {
             return this.$store.getters.getUserById(this.$route.params.id);
         }
-    },
-    // updated() {
-    //     let chatLog = this.refs.scroll;
-    //     if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight
-    // },
-
-    updated() {
-        this.$nextTick(function () {
-            let chatLog = this.$refs.scroll;
-            chatLog.scrollTop = chatLog.scrollHeight;
-        })
     },
     methods: {
         sendMessage: function () {
@@ -104,27 +86,20 @@ export default {
             console.log('shift,enter')
         },
         // ここまでenter key 押したときの機能
-
-        // scrollToBottom() {
-        //     this.$nextTick(() => {
-        //         const chatLog = this.$refs.scroll[0];
-        //         if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight;
-        //     })
-        // }
     },
     components: {
-        messageBox
+        MessageBox
     }
+    // updated() {
+    //     this.$nextTick(function () {
+    //         let chatLog = this.$refs.scroll;
+    //         chatLog.scrollTop = chatLog.scrollHeight;
+    //     })
+    // },
 }
 </script>
 
 <style>
-/* .app-bar {
-    margin-left: 30vw;
-    width: 70vw;
-    position: fixed;
-    top: 32px !important;
-} */
 .chat-screen__name-bar {
     width: 100% !important;
 }
@@ -174,10 +149,6 @@ export default {
     bottom: 0;
 }
 @media only screen and (max-width: 37.5remスマホの時) {
-    /* .app-bar {
-        position: fixed !important;
-        top: 32px !important;
-    } */
     .chat-screen__name-bar {
         position: relative !important;
         top: -80px !important;

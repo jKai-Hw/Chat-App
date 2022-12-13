@@ -2,9 +2,6 @@
     <div class="">
         <v-system-bar fixed light class="top-nav" color="#EAE0C7">
             <span class="ps-2">{{ this.value }}</span>
-            <!-- <v-spacer></v-spacer>
-            <span>2022/22/22 33:66:66</span>
-            <v-btn>Github<v-icon>mdi-open-in-new</v-icon></v-btn> -->
         </v-system-bar>
 
         <div class="nav-main" v-bind:class="homeDisplay">
@@ -31,7 +28,7 @@
                 <v-icon>mdi-home-outline</v-icon>
             </v-btn>
 
-            <v-btn value="Talk" color="#EAE0C7" to="/message-list">
+            <v-btn value="Talk" color="#EAE0C7" to="/talk-view">
                 <span>talk</span>
                 <v-icon>mdi-chat-processing-outline</v-icon>
             </v-btn>
@@ -42,19 +39,17 @@
 
 <script>
 import UserListCard from "@/components/UserListCard";
-import TalkList from "@/components/talkList.vue";
+import TalkList from "@/components/TalkList.vue";
 
 export default {
     data: () => ({
         value: 'Home',
     }),
-
-    created: function () {
-        // console.log(process.env.NODE_ENV);
-        if (Object.keys(this.$store.getters.getAllUsers).length == 0) {
-            this.$store.dispatch('fetchUsers', 'https://randomuser.me/api/?results=10');
-        }
-    },
+    // created: function () {
+    //     if (Object.keys(this.$store.getters.getAllUsers).length == 0) {
+    //         this.$store.dispatch('fetchUsers', 'https://randomuser.me/api/?results=10');
+    //     }
+    // },
     computed: {
         getUsers() {
             return Object.values(this.$store.getters.getAllUsers);
@@ -89,9 +84,6 @@ export default {
     box-sizing: border-box;
 }
 .btm-nav {
-    /* width: 30vh;
-    height: 100%;
-    width: 100%; */
     bottom: 32px !important;
 }
 </style>

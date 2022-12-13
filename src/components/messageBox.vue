@@ -2,7 +2,6 @@
     <div>
         <v-row wrap v-if="messages.didISent == false" class="ma-0 d-flex">
             <div>
-
                 <v-dialog dark max-width="70%" transition="dialog-bottom-transition" v-model="dialog" class="height70">
                     <template v-slot:activator="{ on, attrs }">
                         <v-avatar class="me-1"  v-bind="attrs" v-on="on">
@@ -11,11 +10,6 @@
                     </template>
 
                     <v-card :img="bgList[getUser.index]" v-bind:class="profileDisplay">
-                        <!-- <v-card :img="require('../assets/background-img/background-img3.jpeg')" v-bind:class="profileDisplay"> -->
-
-                        <!-- <img :src="require('../assets/background-img/background-img3.jpeg')"> -->
-                        <!-- <v-card v-bind:class="(profileDisplay, bgimg)"> -->
-                        <!-- <v-card img="getUser.background-img" class="" v-bind:class="profileDisplay"> -->
                         <div class="height70 d-flex align-center justify-center flex-column">
                             <div class="close-btn">
                                 <v-btn icon @click="dialog = false">
@@ -27,11 +21,6 @@
                                     <v-icon>mdi-account</v-icon>
                                 </v-btn>
                             </div>
-                            <!-- <div class="getUserDetail-btn">
-                                        <v-btn text class="btn-multiline text-center" width="50" height="60">
-                                            <span class="text-wrap"><v-icon>mdi-account</v-icon>Detail</span>
-                                        </v-btn>
-                                    </div> -->
                             <div class="width100">
                                 <div class="d-flex justify-center">
                                     <v-avatar size="100"><img :src="getUser.picture.large" alt=""></v-avatar>
@@ -147,17 +136,12 @@
                         </v-card-actions>
                     </v-card>
                 </v-dialog>
-                <!-- <router-link :to="{ name: 'userDetails', params: { id: getUser.login.uuid } }" class="text-decoration-none">
-                    <v-avatar class="me-1">
-                        <img :src="getUser.picture.thumbnail">
-                    </v-avatar>
-                </router-link> -->
             </div>
 
             <div>
                 <v-card class="mb-1 ms-1 card-opponent">
                     <v-card-text class="pa-2">
-                        <p class="font-message f-NSJ ">{{ messages.text }}</p>
+                        <p class="font-message f-NSJ">{{ messages.text }}</p>
                     </v-card-text>
                 </v-card>
                 <v-row class="ms-1 ma-0">
@@ -195,7 +179,7 @@ import bg9 from '../assets/background-img/background-img9.jpeg'
 import bg10 from '../assets/background-img/background-img10.jpeg'
 
 export default {
-    name: 'messageBox',
+    name: 'MessageBox',
     data() {
         return {
             dialog: false,
@@ -217,7 +201,6 @@ export default {
             else return "";
         },
         detailDisplay() {
-            // console.log(this.user.backgroundimg);
             if (this.value == 'Profile') return "d-none";
             else return "";
         }
@@ -227,7 +210,7 @@ export default {
 
 <style>
 .font-message {
-    color: rgba(0, 0, 0, 0.87);
+    color: #333333;
     line-height: 1.05;
     font-size: 1rem;
     margin: 0% !important;
@@ -237,9 +220,6 @@ export default {
 }
 .fw-300 {
     font-weight: 300;
-}
-.overflow-hidden {
-    overflow: hidden !important;
 }
 .font-date {
     color: rgba(0, 0, 0, 0.6);
@@ -256,9 +236,6 @@ export default {
 
 .userData {
     width: 100%;
-}
-.margin-12 {
-    margin: 12px 0;
 }
 @media only screen and (max-width: 37.5rem) {
     .userData-con {

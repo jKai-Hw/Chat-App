@@ -7,16 +7,11 @@
                             <img  :src="user.picture.large" alt="">
                         </v-avatar>
 
-                    <h3 class="ps-2">{{(user.name.first + " " + user.name.last)}}</h3>
+                    <h3 class="ps-2 f-black">{{(user.name.first + " " + user.name.last)}}</h3>
                 </div>
             </template>
 
             <v-card :img="bgList[user.index]" v-bind:class="profileDisplay">
-            <!-- <v-card :img="require('../assets/background-img/background-img3.jpeg')" v-bind:class="profileDisplay"> -->
-
-                <!-- <img :src="require('../assets/background-img/background-img3.jpeg')"> -->
-                <!-- <v-card v-bind:class="(profileDisplay, bgimg)"> -->
-                <!-- <v-card img="user.background-img" class="" v-bind:class="profileDisplay"> -->
                 <div class="height70 d-flex align-center justify-center flex-column">
                     <div class="close-btn">
                         <v-btn icon  @click="dialog = false">
@@ -28,11 +23,6 @@
                             <v-icon>mdi-account</v-icon>
                         </v-btn>
                     </div>
-                    <!-- <div class="userDetail-btn">
-                        <v-btn text class="btn-multiline text-center" width="50" height="60">
-                            <span class="text-wrap"><v-icon>mdi-account</v-icon>Detail</span>
-                        </v-btn>
-                    </div> -->
                     <div class="width100">
                         <div class="d-flex justify-center">
                             <v-avatar size="100"><img  :src="user.picture.large" alt=""></v-avatar>
@@ -171,17 +161,12 @@ export default {
     props: {
         user: Object
     },
-    created: function () {
-        // console.log(process.env.NODE_ENV);
-
-    },
     computed: {
         profileDisplay() {
             if (this.value == 'Detail') return "d-none";
             else return "";
         },
         detailDisplay() {
-            // console.log(this.user.backgroundimg);
             if (this.value == 'Profile') return "d-none";
             else return "";
         }
@@ -199,18 +184,8 @@ export default {
 .width100 {
     width: 100%;
 }
-.w60vw {
-    width: 60vw;
-}
-.width50p {
-    width: 50px;
-}
-.table {
-    background-color: transparent !important;
-}
 .card-detail {
-    /* background: linear-gradient(to bottom right, #EB8261, #EFBF1C); */
-        display: flex !important;
+    display: flex !important;
     flex-direction: column;
 }
 .userData-con {

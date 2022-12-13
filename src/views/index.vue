@@ -1,20 +1,17 @@
 <template>
     <div>
         <div id="xs-index" class="d-flex d-sm-none">
-            <UserList1 />
+            <UserList />
         </div>
     </div>
 </template>
 
 <script>
-import userCard from "@/components/userCard";
-import UserList1 from '@/components/UserList1.vue'
-
+import UserList from '@/components/UserList.vue'
 
 export default {
-    name: 'userList',
+    name: 'index',
     created: function () {
-        // console.log(process.env.NODE_ENV);
         if (Object.keys(this.$store.getters.getAllUsers).length == 0) {
             this.$store.dispatch('fetchUsers', 'https://randomuser.me/api/?results=10');
         }
@@ -25,8 +22,7 @@ export default {
         }
     },
     components: {
-        userCard,
-        UserList1,
+        UserList,
     },
 }
 </script>

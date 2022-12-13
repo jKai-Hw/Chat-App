@@ -3,7 +3,7 @@ module.exports = {
   pages: {
     index: {
       entry: 'src/main.js', // 必須パラメータ
-      title: 'Chat App',
+      title: 'Chats App',
     }
   },
   transpileDependencies: [
@@ -11,7 +11,7 @@ module.exports = {
   ],
   outputDir : 'docs',
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/chat-app/'
+    ? '/chats-app/'
     : '/',
   assetsDir: './',
 }

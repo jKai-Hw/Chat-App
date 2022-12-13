@@ -24,23 +24,19 @@
 </template>
 
 <script>
-import TalkList from "@/components/talkList.vue";
-// import personBox from "@/components/personBox.vue/"
-// import { Message } from '@/model/index.js'
+import TalkList from "@/components/TalkList.vue";
 
 export default {
-    name: 'messageList',
+    name: 'talk-view',
     data: () => ({
         value: 'Talk',
     }),
     computed: {
         getLastMsgId() {
-            // return this.$store.getters.getLatestMessageById;
             return this.$store.getters['messages/getLatestMsgIdList'];
         },
     },
     components: {
-        // personBox,
         TalkList,
     }
 }
@@ -60,9 +56,6 @@ export default {
     box-sizing: border-box;
 }
 .btm-nav {
-    /* width: 30vh;
-    height: 100%;
-    width: 100%; */
     bottom: 32px !important;
 }
 </style>
