@@ -5,7 +5,6 @@ export const users = {
     },
     getters: {
         getAllUsers(state){
-            // console.log(state.users[0])
             return state.users;
         },
         getUserById: (state) => (id) => {
@@ -17,6 +16,7 @@ export const users = {
             let user = {};
             for (let i = 0; i < data.length; i++) {
                 user[data[i].login.uuid] = data[i];
+                user[data[i].login.uuid]["index"] = i.toString();
             }
             state.users = user;
         }

@@ -1,17 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import userList from '../views/user-list.vue'
-import userDetails from '../views/user-details.vue'
+import index from '../views/index.vue'
 import chatScreen from '../views/chat-screen.vue'
-import recipientList from '../views/message-list.vue'
+import talkView from '../views/talk-view.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/', name: 'userList', component: userList },
-  { path: '/user/:id', name: 'userDetails', component: userDetails },
+  { path: '/', name: 'index', component: index },
   { path: '/user/:id/chat', name: 'chatScreen', component: chatScreen },
-  { path: '/message-list', name: 'recipientList', component: recipientList }
+  { path: '/talk-view', name: 'talk-view', component: talkView }
 ]
 
 const router = new VueRouter({

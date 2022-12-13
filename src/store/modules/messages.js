@@ -6,15 +6,6 @@ export const messages = {
     state: {
         msgListPerRecipient: {},
     },
-    // methods: {
-    //     toIdOnly (arr) {
-    //         let ans = [];
-    //         for (let i = 0; i < arr.length; i++) {
-    //             ans.push(arr[i].key);
-    //         }
-    //         return ans;
-    //     }
-    // },
     getters: {
         getMessagesById: (state) => (id) => {
             return state.msgListPerRecipient[id];

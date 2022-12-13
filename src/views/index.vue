@@ -1,23 +1,17 @@
 <template>
-    <div class="userList">
-        <h1 class="subheading grey--text">Home</h1>
-
-        <div class="my-5">
-            <v-row wrap>
-                <userCard v-for="user in getUsers" :key=user.login.uuid :user="user"></userCard>
-            </v-row>
+    <div>
+        <div id="xs-index" class="d-flex d-sm-none">
+            <UserList />
         </div>
     </div>
 </template>
 
 <script>
-import userCard from "@/components/userCard";
-
+import UserList from '@/components/UserList.vue'
 
 export default {
-    name: 'userList',
+    name: 'index',
     created: function () {
-        // console.log(process.env.NODE_ENV);
         if (Object.keys(this.$store.getters.getAllUsers).length == 0) {
             this.$store.dispatch('fetchUsers', 'https://randomuser.me/api/?results=10');
         }
@@ -28,7 +22,7 @@ export default {
         }
     },
     components: {
-        userCard,
+        UserList,
     },
 }
 </script>

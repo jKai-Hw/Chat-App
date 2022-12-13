@@ -1,51 +1,27 @@
 <template>
-    <div class="pa-0 ma-0 overflow-y-auto" ref="scroll">
-
-        <v-app-bar dense flat color="grey lighten-2">
-            <v-icon @click="$router.back()" class="rotate-180 pl-5">mdi-logout</v-icon>
-            <v-toolbar-title class="pl-1">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
-
+    <div class="pa-0 ma-0 overflow-y-auto height100 hull-width" ref="scroll">
+        <v-app-bar app dense flat color="#EAE0C7">
+            <v-icon @click="$router.back()" class="d-sm-none rotate-180 pl-5">mdi-logout</v-icon>
+            <v-toolbar-title class="pl-1 f-black">{{ getUser.name.first + " " + getUser.name.last }}</v-toolbar-title>
             <v-spacer></v-spacer>
         </v-app-bar>
-        <div class="chat-screen__name-bar pa-0 ma-0" >
 
+        <div class="chat-screen__name-bar pb-10" >
             <v-row class="pt-5 pa-2 ma-0">
                 <v-col xs="12" class="pa-2">
-                    <!--  v-card xs="12" class="pa-2 overflow-y-auto mx-auto" width="100%" max-height="400" ref="scroll"  -->
-
-
-                    <!-- <v-list
-        class="overflow-y-auto mx-auto my-10"
-        width="100%"
-        max-height="200"
-        max-width="500">
-
-        <v-list-item
-            v-for="item in items"
-            :key="item.message">
-            {{ item.message }}
-        </v-list-item>
-    </v-list> -->
-
-
-
-                    <messageBox v-for="messages in getMsgList" :key="messages.order" :messages="messages"></messageBox>
-
+                    <MessageBox v-for="messages in getMsgList" :key="messages.order" :messages="messages"></MessageBox>
                 </v-col>
             </v-row>
         </div>
 
-        <v-footer app outlined class="mx-0" color="grey lighten-2">
-            <v-row no-gutters class="d-flex align-content-center justify-center">
+        <v-footer outlined class="mx-0 footer" color="#EAE0C7">
+            <v-row no-gutters class="d-flex align-center justify-center">
                 <v-col class="pr-2">
-                    <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..."
-                        v-model="text" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter"
-                        @keydown.enter.shift="keyEnterShift">
+                    <v-textarea auto-grow dense outlined rows="1" hide-details="false" label="Enter message..." v-model="text" @keydown.enter.exact="keyDownEnter" @keyup.enter.exact="keyUpEnter" @keydown.enter.shift="keyEnterShift" color="#093353">
                     </v-textarea>
                 </v-col>
-                <v-btn depressed color="gray lighten-4" class="px-0 d-flex  align-content-center" min-width="0"
-                    @click="sendMessage()">
-                    <v-icon large class="color-gray">mdi-send-circle-outline</v-icon>
+                <v-btn icon  color="gray lighten-4" class="px-0 d-flex  align-center" min-width="0" @click="sendMessage()">
+                    <v-icon large>mdi-send-circle-outline</v-icon>
                 </v-btn>
             </v-row>
         </v-footer>
@@ -53,11 +29,11 @@
 </template>
 
 <script>
-import messageBox from "@/components/messageBox.vue";
+import MessageBox from "@/components/MessageBox.vue";
 import { Message } from '@/model/index.js'
 
 export default {
-    name: 'chatScreen',
+    name: "chatScreen",
     data() {
         return {
             order: 0,
@@ -76,17 +52,6 @@ export default {
         getUser() {
             return this.$store.getters.getUserById(this.$route.params.id);
         }
-    },
-    // updated() {
-    //     let chatLog = this.refs.scroll;
-    //     if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight
-    // },
-
-    updated() {
-        this.$nextTick(function () {
-            let chatLog = this.$refs.scroll;
-            if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight;
-        })
     },
     methods: {
         sendMessage: function () {
@@ -121,17 +86,16 @@ export default {
             console.log('shift,enter')
         },
         // ここまでenter key 押したときの機能
-
-        // scrollToBottom() {
-        //     this.$nextTick(() => {
-        //         const chatLog = this.$refs.scroll[0];
-        //         if (!chatLog) return chatLog.scrollTop = chatLog.scrollHeight;
-        //     })
-        // }
     },
     components: {
-        messageBox
+        MessageBox
     }
+    // updated() {
+    //     this.$nextTick(function () {
+    //         let chatLog = this.$refs.scroll;
+    //         chatLog.scrollTop = chatLog.scrollHeight;
+    //     })
+    // },
 }
 </script>
 
@@ -144,7 +108,7 @@ export default {
 }
 
 .card-mine {
-    border-radius: 8px 8px 0 8px !important;
+    border-radius: 8px 0 8px 8px !important;
 }
 
 .card-opponent {
@@ -178,5 +142,27 @@ export default {
 
 .h-100 {
     height: 100% !important;
+}
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+@media only screen and (max-width: 37.5remスマホの時) {
+    .chat-screen__name-bar {
+        position: relative !important;
+        top: -80px !important;
+    }
+}
+@media only screen and (min-width: 37.5rem) {
+    .hull-width {
+        position: fixed;
+        right: 0;
+        width: 70vw;
+    }
+    .footer {
+        width: 70vw;
+        left: 30vw !important;
+    }
 }
 </style>
